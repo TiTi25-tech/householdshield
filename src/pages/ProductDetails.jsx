@@ -10,8 +10,11 @@ console.log("Products:", products)
 
   const product = products.find((p) => p.id === Number(id))
 
-  const relatedProducts = products
-  .filter((p) => p.id !== product.id)
+  const relatedProducts = products.filter(
+    (item) =>
+       item.category === product.category &&
+        item.id !== product.id
+)
   .slice(0, 3)
 
   if (!product) {
@@ -24,7 +27,8 @@ console.log("Products:", products)
       <img
         src={product.image}
         alt={product.name}
-        className="w-full h-80 object-cover rounded-lg mb-6"
+        loading="lazy"
+        className="w-full h-48 sm:h-56 md:h-64 object-cover rounded-lg mb-6"
       />
 
       <h1 className="text-3xl font-bold mb-4">
@@ -110,43 +114,37 @@ console.log("Products:", products)
 
 {/* RELATED PRODUCTS */}
 
+{/* RELATED PRODUCTS */}
 <div className="mt-16">
-  <h2 className="text-2xl font-bold mb-6 text-center">
-    🔥 Related Products
-  </h2>
+  <h2 className="text-2xl font-bold mb-6">🔄 Related Products</h2>
 
-  <div className="grid md:grid-cols-3 gap-6">
-    {relatedProducts.map((item) => (
-      <Link key={item.id} to={`/product/${item.id}`}>
-      <div className="bg-gray-900 p-5 rounded-xl shadow-lg hover:shadow-2xl transition relative">
-        {item.id === 1&& (
-          <span className="absolute top-3 left-3 bg-green-500 text-black text-xs px-2 py-1 rounded">
-  TOP PICK
-</span>
-        )}
-        <img
-          src={item.image}
-          alt={item.name}
-          className="rounded-lg mb-4 w-full h-40 object-cover"
-        />
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
-        <h3 className="font-semibold mb-2">{item.name}</h3>
+    {relatedProducts.map(item => (
+      <Link to={`/product/${item.id}`} key={item.id}>
+        <div className="bg-white p-4 rounded-xl shadow hover:shadow-lg transition">
 
-        {/* ⭐ Rating */}
-        <div className="flex items-center mb-2 text-sm">
-          {"⭐".repeat(Math.floor(item.rating))}
-          <span className="text-gray-400 ml-2">
-            ({item.rating} .{item.reviews} reviews)
-          </span>
+          <img
+            src={item.image}
+            alt={item.name}
+            loading="lazy"
+            className="w-full h-48 object-cover rounded-lg mb-4"
+          />
+
+          <h3 className="font-semibold mb-1">{item.name}</h3>
+
+          <p className="text-yellow-500 text-sm mb-2">
+            ⭐ {item.rating} ({item.reviews})
+          </p>
+
+          <button className="bg-amber-500 hover:bg-amber-400 text-white px-4 py-2 rounded-lg w-full">
+            View Product
+          </button>
+
         </div>
-
-
-             <span className="bg-amber-500 hover:bg-amber-400 text-black px-4 py-2 rounded-lg text-sm inline-block mt-2">
-            🔥 Check Latest Price
-          </span>
-      </div>
       </Link>
     ))}
+
   </div>
 </div>
 <a

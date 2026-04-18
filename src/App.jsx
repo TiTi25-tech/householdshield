@@ -5,6 +5,7 @@ import Reviews from "./pages/Reviews"
 import ProductDetails from "./pages/ProductDetails"
 import Blog from "./pages/Blog"
 import About from "./pages/About"
+import Category from "./pages/Category"
 import Contact from "./pages/Contact"
 import Privacy from "./pages/Privacy"
 
@@ -14,7 +15,7 @@ import Privacy from "./pages/Privacy"
 function App() {
   return (
     <Router>
-      <div className="bg-gray-950 text-white min-h-screen">
+      <div className="bg-gray-50 text-gray-800 min-h-screen">
 
         {/* NAVBAR */}
         <nav className="flex justify-between items-center px-8 py-4 border-b border-gray-800">
@@ -41,6 +42,7 @@ function App() {
            <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/privacy" element={<Privacy />} />
+          <Route path="/category/:categoryName" element={<Category />} />
        </Routes>
 
       </div>
