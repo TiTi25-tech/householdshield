@@ -4,12 +4,9 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   plugins: [
-    react(), 
-    tailwindcss()
-  ],
-
+    react(), tailwindcss()],
   server: {
-    open: true,
-  },
+    open:true
+  }
 })
 

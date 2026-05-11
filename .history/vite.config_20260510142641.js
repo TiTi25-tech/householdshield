@@ -7,9 +7,9 @@ export default defineConfig({
     react(), 
     tailwindcss()
   ],
-
+  
   server: {
-    open: true,
-  },
+    open:true
+  }
 })
 
